@@ -2,14 +2,29 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
-    component: () => import("../views/HomeView.vue"),
+    path: "/stats",
+    name: "stats",
+    component: () => import("../views/MonitoringView.vue"),
   },
   {
-    path: "/auth",
-    name: "auth",
-    component: () => import("../views/AuthView.vue"),
+    path: "/users",
+    name: "users",
+    component: () => import("../views/UsersView.vue"),
+  },
+  {
+    path: "/tasks",
+    name: "tasks",
+    component: () => import("../views/TasksView.vue"),
+  },
+  {
+    path: "/workers",
+    name: "workers",
+    component: () => import("../views/WorkersView.vue"),
+  },
+  {
+    path: "/messages",
+    name: "messages",
+    component: () => import("../views/MessagesView.vue"),
   },
 ];
 

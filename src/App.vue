@@ -21,7 +21,7 @@ html, body
   background: $c-bg
 
 #app
-  font-family: "Roboto Light", sans-serif
+  font-family: "Poppins", sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   text-align: center
@@ -29,6 +29,8 @@ html, body
   display: flex
   flex-direction: column
   min-height: 100vh
+  position: relative
+  background: $c-element-bg
 
 h2
   font-size: 45px

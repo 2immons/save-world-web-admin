@@ -38,7 +38,6 @@ h2
 .container
   width: 85%
   height: inherit
-  max-width: 414px
   display: inherit
   justify-content: inherit
   align-items: inherit

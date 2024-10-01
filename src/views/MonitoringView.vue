@@ -2,12 +2,14 @@
   <SideMenu />
   <main>
     <PageHeader title="Мониторинг" />
+    <ChartsSection />
   </main>
 </template>
 
 <script lang="ts" setup>
 import SideMenu from "@/components/SideMenu.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import ChartsSection from "@/components/monitoring/charts/ChartsSection.vue";
 </script>
 
 <style lang="sass" scoped>

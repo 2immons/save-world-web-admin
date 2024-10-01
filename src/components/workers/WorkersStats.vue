@@ -2,49 +2,74 @@
 import CreateTaskForm from "@/components/tasks/CreateTaskForm.vue";
 import EditTaskForm from "@/components/tasks/EditTaskForm.vue";
 import { ref } from "vue";
-import TaskListItem from "@/components/tasks/TaskListItem.vue";
+import CreateWorkerForm from "@/components/workers/CreateWorkerForm.vue";
+import EditWorkerForm from "@/components/workers/EditWorkerForm.vue";
+import WorkerListItem from "@/components/workers/WorkerListItem.vue";
 
 const isCreateTaskFormVisible = ref(false);
-const isEditTaskFormVisible = ref(false);
-const currentTask = ref();
-
-interface Task {
-  title: string;
-}
-
-const tasks = ref([
-  {
-    title: "22",
-  },
-  {
-    title: "33",
-  },
-]);
+const isEditFormVisible = ref(false);
+const currentWorker = ref();
 
 const openCreateTaskForm = () => {
   isCreateTaskFormVisible.value = true;
 };
 
-const openEditForm = (task: Task) => {
-  currentTask.value = task;
-  isEditTaskFormVisible.value = true;
+const openEditForm = (worker: Worker) => {
+  currentWorker.value = worker;
+  isEditFormVisible.value = true;
 };
+
+interface Worker {
+  title: string;
+  [level: number]: {
+    price: number;
+    power: number;
+  };
+  maxLevel: number;
+}
+
+const workers = ref([
+  {
+    title: "Builder",
+    levels: {
+      1: {
+        price: 100,
+        power: 50,
+      },
+      2: {
+        price: 200,
+        power: 75,
+      },
+    },
+    maxLevel: 2,
+  },
+  {
+    title: "Builder",
+    levels: {
+      1: {
+        price: 100,
+        power: 50,
+      },
+    },
+    maxLevel: 1,
+  },
+]);
 </script>
 
 <template>
   <section>
-    <CreateTaskForm
+    <CreateWorkerForm
       :modelValue="isCreateTaskFormVisible"
       @update:modelValue="isCreateTaskFormVisible = $event"
     />
-    <EditTaskForm
-      :modelValue="isEditTaskFormVisible"
-      :task="currentTask"
-      @update:modelValue="isEditTaskFormVisible = $event"
+    <EditWorkerForm
+      :modelValue="isEditFormVisible"
+      :worker="currentWorker"
+      @update:modelValue="isEditFormVisible = $event"
     />
     <div class="container">
       <div class="tasks-list">
-        <h3>Задания</h3>
+        <h3>Воркеры</h3>
         <button class="create-task-btn" @click="openCreateTaskForm">
           Создать
         </button>
@@ -52,17 +77,17 @@ const openEditForm = (task: Task) => {
           <thead>
             <tr>
               <th>№</th>
-              <th>Заголовок</th>
-              <th>Награда</th>
+              <th>Наименование</th>
+              <th>Бонус</th>
               <th></th>
             </tr>
           </thead>
-          <TaskListItem
+          <WorkerListItem
             @open-edit-modal="openEditForm"
-            v-for="(task, index) in tasks"
+            v-for="(worker, index) in workers"
             :key="index"
-            :task="task"
-            :taskKey="index"
+            :worker="worker"
+            :workerKey="index"
           />
         </table>
       </div>

@@ -263,4 +263,21 @@ form
 
 .switcher__text-right
   left: 10px
+
+input[type="text"], input[type="tel"], textarea
+  padding: 10px
+  border: none
+  border-bottom: 1px solid $c-main-text
+  font-size: 16px
+  color: #333
+  background-color: #fff
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out
+
+
+input[type="tel"]:focus, input[type="text"]:focus, textarea:focus
+  border-color: #007BFF
+  outline: none
+
+input[type="tel"]::placeholder, input[type="text"]::placeholder, textarea::placeholder
+  color: #999
 </style>

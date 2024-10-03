@@ -2,12 +2,14 @@
   <SideMenu />
   <main>
     <PageHeader title="Управление пользователями" />
+    <UsersList />
   </main>
 </template>
 
 <script lang="ts" setup>
 import SideMenu from "@/components/SideMenu.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import UsersList from "@/components/users/UsersList.vue";
 </script>
 
 <style lang="sass" scoped>

@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, ref } from "vue";
+import { cardsStore } from "@/store/cards";
+
+const cardsStoreInstance = cardsStore();
+
+
 
 const props = defineProps<{
   modelValue: boolean;
@@ -11,34 +16,67 @@ const closeForm = () => {
 };
 
 interface LevelDetails {
-  price: number;
+  levelPrice: number;
   power: number;
 }
 
 const levels = ref<Record<number, LevelDetails>>({
   1: {
-    price: NaN,
+    levelPrice: NaN,
     power: NaN,
   },
 });
 
 const addLevel = () => {
   const newLevel = Object.keys(levels.value).length + 1;
-  levels.value[newLevel] = { price: NaN, power: NaN };
+  levels.value[newLevel] = { levelPrice: NaN, power: NaN };
 };
 
-const createWorker = () => {
+enum CardType {
+  ECO = "ECO",
+  ECO1 = "ECO1",
+  ECO2 = "ECO2"
+}
+
+const createWorker = async () => {
+  const cardInfo = {
+    languageNameAndDescriptionMap: {
+      RU: {
+        name: titles.value[0].title,
+        description: descriptions.value[0].description,
+      },
+      EN: {
+        name: titles.value[1].title,
+        description: descriptions.value[1].description,
+      },
+    },
+  };
+
+  const cardLevelMap = {
+    cardLevelMap: levels.value, // Убедитесь, что levels.value соответствует Record<number, CardParameters>
+    maxLevel: Object.keys(levels.value).length, // Устанавливаем максимальный уровень
+  };
+
+  const newCardData = {
+    name: "Hello",
+    cardInfo: cardInfo,
+    imageId: 123,
+    cardLevelMap: cardLevelMap,
+    isStartCard: isBasicWorker.value,
+    cardType: CardType.ECO,
+  }
+  await cardsStoreInstance.createCard(newCardData)
   const maxLevel = Object.keys(levels.value).length;
   console.log("Создана карточка");
   console.log(maxLevel);
 };
 
-const languages = ref(["ru", "en"]);
+const languages = ref(["RU", "EN"]);
 
 // TODO: вынести в миксин
 const languageMap: Record<string, string> = {
-  ru: "Русский",
-  en: "Английский",
+  RU: "Русский",
+  EN: "Английский",
 };
 
 const titles = ref(
@@ -109,7 +147,7 @@ const isBasicWorker = ref(false);
                 <tr v-for="(levelDetails, level) in levels" :key="level">
                   <th>{{ level }}</th>
                   <th>
-                    <input type="number" v-model.number="levelDetails.price" />
+                    <input type="number" v-model.number="levelDetails.levelPrice" />
                   </th>
                   <th>
                     <input type="number" v-model.number="levelDetails.power" />

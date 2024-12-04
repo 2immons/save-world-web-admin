@@ -48,10 +48,6 @@ const props = defineProps<{
           <img src="../../assets/svg/crud-icons/delete.svg" alt="Delete" />
         </button>
       </div>
-      <div class="checkbox">
-        Базовая
-        <input type="checkbox" />
-      </div>
     </th>
   </tr>
 </template>

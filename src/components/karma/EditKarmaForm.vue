@@ -96,8 +96,9 @@ const descriptions = ref(
 
 const isBasicWorker = ref(false);
 
-const reward = ref();
-const taskUrl = ref();
+const boostValue = ref();
+const goal = ref();
+const minDonat = ref();
 </script>
 
 <template>
@@ -105,7 +106,7 @@ const taskUrl = ref();
     <div class="container">
       <div class="create-modal" @click.stop>
         <form action="" @submit.prevent>
-          <h3>Редактирование задания</h3>
+          <h3>Создание карточки кармы</h3>
           <h4>Названия</h4>
           <div class="titles">
             <div
@@ -117,14 +118,30 @@ const taskUrl = ref();
               <input type="text" v-model="item.title" />
             </div>
           </div>
-          <div class="input-wrapper">
-            <label>Награда</label>
-            <input type="number" v-model="reward" />
+          <h4>Описания</h4>
+          <div class="descriptions">
+            <div
+                v-for="(item, index) in descriptions"
+                :key="index"
+                class="input-wrapper"
+            >
+              <label>{{ item.displayLanguage }}</label>
+              <textarea v-model="item.description" />
+            </div>
           </div>
           <div class="input-wrapper">
-            <label>Ссылка</label>
-            <input type="text" v-model="taskUrl" />
+            <label>Минимальный донат:</label>
+            <input v-model="minDonat" type="number" />
           </div>
+          <div class="input-wrapper">
+            <label>Прибавка в час:</label>
+            <input v-model="boostValue" type="number" />
+          </div>
+          <div class="input-wrapper">
+            <label>Общая цель по очкам:</label>
+            <input v-model="goal" type="number" />
+          </div>
+          <button @click="createWorker">Создать карточку</button>
         </form>
         <div class="image-input"></div>
       </div>
@@ -208,3 +225,4 @@ textarea
   justify-content: center
   flex-direction: column
 </style>
+

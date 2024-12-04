@@ -2,92 +2,70 @@
 import CreateTaskForm from "@/components/tasks/CreateTaskForm.vue";
 import EditTaskForm from "@/components/tasks/EditTaskForm.vue";
 import { ref } from "vue";
-import CreateWorkerForm from "@/components/workers/CreateWorkerForm.vue";
-import EditWorkerForm from "@/components/workers/EditWorkerForm.vue";
-import WorkerListItem from "@/components/workers/WorkerListItem.vue";
+import TaskListItem from "@/components/tasks/TaskListItem.vue";
+import CreateKarmaForm from "@/components/karma/CreateKarmaForm.vue";
+import EditKarmaForm from "@/components/karma/EditKarmaForm.vue";
+import KarmaListItem from "@/components/karma/KarmaListItem.vue";
 
-const isCreateTaskFormVisible = ref(false);
+const isCreateFormVisible = ref(false);
 const isEditFormVisible = ref(false);
-const currentWorker = ref();
+const currentTask = ref();
 
-const openCreateTaskForm = () => {
-  isCreateTaskFormVisible.value = true;
-};
-
-const openEditForm = (worker: Worker) => {
-  currentWorker.value = worker;
-  isEditFormVisible.value = true;
-};
-
-interface Worker {
+interface Task {
   title: string;
-  [level: number]: {
-    price: number;
-    power: number;
-  };
-  maxLevel: number;
 }
 
-const workers = ref([
+const tasks = ref([
   {
-    title: "Builder",
-    levels: {
-      1: {
-        price: 100,
-        power: 50,
-      },
-      2: {
-        price: 200,
-        power: 75,
-      },
-    },
-    maxLevel: 2,
+    title: "223",
   },
   {
-    title: "Builder",
-    levels: {
-      1: {
-        price: 100,
-        power: 50,
-      },
-    },
-    maxLevel: 1,
+    title: "33",
   },
 ]);
+
+const openCreateForm = () => {
+  isCreateFormVisible.value = true;
+};
+
+const openEditForm = (task: Task) => {
+  currentTask.value = task;
+  isEditFormVisible.value = true;
+};
 </script>
 
 <template>
   <section>
-    <CreateWorkerForm
-      :modelValue="isCreateTaskFormVisible"
-      @update:modelValue="isCreateTaskFormVisible = $event"
+    <CreateKarmaForm
+      :modelValue="isCreateFormVisible"
+      @update:modelValue="isCreateFormVisible = $event"
     />
-    <EditWorkerForm
+    <EditKarmaForm
       :modelValue="isEditFormVisible"
-      :worker="currentWorker"
+      :task="currentTask"
       @update:modelValue="isEditFormVisible = $event"
     />
     <div class="container">
       <div class="tasks-list">
-        <h3>Статистика майнинг-карточек</h3>
-        <button class="create-task-btn" @click="openCreateTaskForm">
+        <h3>Карточки кармы</h3>
+        <button class="create-task-btn" @click="openCreateForm">
           Создать
         </button>
         <table>
           <thead>
             <tr>
               <th>№</th>
-              <th>Наименование</th>
-              <th>Бонус</th>
+              <th>Заголовок</th>
+              <th>Награда</th>
               <th></th>
             </tr>
           </thead>
-          <WorkerListItem
+          <KarmaListItem
             @open-edit-modal="openEditForm"
-            v-for="(worker, index) in workers"
+            v-for="(task, index) in tasks"
             :key="index"
-            :worker="worker"
-            :workerKey="index"
+            :task="task"
+            :taskKey="index"
           />
         </table>
       </div>

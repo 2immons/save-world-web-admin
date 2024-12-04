@@ -64,7 +64,6 @@ interface NewCard {
     cardInfo: CardInfo;
     imageId: number;
     cardLevelMap: CardLevelMap;
-    isStartCard: boolean;
     cardType: CardType;
 }
 
@@ -83,7 +82,6 @@ export const cardsStore = defineStore("cards", {
                     cardInfo: newCardData.cardInfo,
                     imageId: newCardData.imageId,
                     cardLevelMap: newCardData.cardLevelMap,
-                    isStartCard: newCardData.isStartCard,
                     cardType: newCardData.cardType,
                 });
 

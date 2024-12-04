@@ -69,7 +69,7 @@ const workers = ref([
     />
     <div class="container">
       <div class="tasks-list">
-        <h3>Воркеры</h3>
+        <h3>Майнинг-карточки</h3>
         <button class="create-task-btn" @click="openCreateTaskForm">
           Создать
         </button>

@@ -102,7 +102,7 @@ const isBasicWorker = ref(false);
     <div class="container">
       <div class="create-modal" @click.stop>
         <form action="" @submit.prevent>
-          <h3>Создание карточки</h3>
+          <h3>Создание майнинг-карты</h3>
           <h4>Названия</h4>
           <div class="titles">
             <div

@@ -44,7 +44,7 @@ const openEditForm = (task: Task) => {
     />
     <div class="container">
       <div class="tasks-list">
-        <h3>Задания</h3>
+        <h3>Статистика заданий</h3>
         <button class="create-task-btn" @click="openCreateTaskForm">
           Создать
         </button>

@@ -37,8 +37,12 @@ const closeSideMenu = () => {
             <p v-show="isSideMenuOpen">Задания</p>
           </router-link>
           <router-link to="/workers" class="nav-item">
-            <img src="../assets/svg/workers.svg" alt="" />
-            <p v-show="isSideMenuOpen">Воркеры</p>
+            <img src="../assets/svg/mining.svg" alt="" />
+            <p v-show="isSideMenuOpen">Майнинг карточки</p>
+          </router-link>
+          <router-link to="/karma" class="nav-item">
+            <img src="../assets/svg/karma.svg" alt="" />
+            <p v-show="isSideMenuOpen">Карма</p>
           </router-link>
           <router-link to="/users" class="nav-item">
             <img src="../assets/svg/users.svg" alt="" />
